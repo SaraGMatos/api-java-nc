@@ -28,6 +28,10 @@ public class Topic {
     this.description = newDescription;
   }
 
+  public UUID getId() {
+    return id;
+  }
+
   public String getSlug() {
     return slug;
   }
