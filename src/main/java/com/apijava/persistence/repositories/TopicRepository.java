@@ -1,7 +1,6 @@
 package com.apijava.persistence.repositories;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;

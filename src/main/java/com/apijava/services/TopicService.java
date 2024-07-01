@@ -24,8 +24,10 @@ public class TopicService {
   public Topic createTopic(Topic topic) {
     var maybeTopic = this.topicRepository.getTopicBySlug(topic.getSlug());
 
-    // if (Objects.isNull(topic)) {
-    // return this.topicRepository.addTopic(topic);
-    // }
+    if (Objects.isNull(maybeTopic)) {
+      return this.topicRepository.addTopic(topic);
+    }
+
+    return topic;
   }
 }
