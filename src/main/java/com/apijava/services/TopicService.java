@@ -2,8 +2,10 @@ package com.apijava.services;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
@@ -19,6 +21,17 @@ public class TopicService {
 
   public List<Topic> getAllTopics() {
     return List.of(new Topic("Dogs", "We all like them"));
+  }
+
+  public Topic getTopicById(UUID id) {
+    var maybeTopic = this.topicRepository.getTopicById(id);
+
+    if (maybeTopic.isPresent()) {
+      return maybeTopic.get();
+    }
+
+    // Throw custom exception
+    return null;
   }
 
   public Topic createTopic(Topic topic) {
