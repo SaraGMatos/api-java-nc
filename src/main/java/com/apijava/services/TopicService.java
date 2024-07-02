@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
 
@@ -23,15 +24,16 @@ public class TopicService {
     return List.of(new Topic("Dogs", "We all like them"));
   }
 
-  public Topic getTopicById(UUID id) {
+  public Topic getTopicById(UUID id) throws NotFoundException {
+
     var maybeTopic = this.topicRepository.getTopicById(id);
 
     if (maybeTopic.isPresent()) {
       return maybeTopic.get();
     }
 
-    // Throw custom exception
-    return null;
+    throw new NotFoundException("Topic with id " + id + " not found.");
+
   }
 
   public Topic createTopic(Topic topic) {
