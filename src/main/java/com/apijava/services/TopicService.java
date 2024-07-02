@@ -20,7 +20,7 @@ public class TopicService {
   }
 
   public List<Topic> getAllTopics() {
-    return List.of(new Topic("Dogs", "We all like them"));
+    return this.topicRepository.getAllTopics();
   }
 
   public Topic getTopicById(UUID id) throws NotFoundException {
