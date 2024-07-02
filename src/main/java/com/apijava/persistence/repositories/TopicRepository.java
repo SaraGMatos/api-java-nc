@@ -1,5 +1,6 @@
 package com.apijava.persistence.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,7 +13,11 @@ import com.apijava.persistence.entities.Topic;
 @Repository
 public final class TopicRepository {
 
-  private final List<Topic> inMemoryTopics = List.of();
+  private final ArrayList<Topic> inMemoryTopics = new ArrayList<Topic>(List.of());
+
+  public ArrayList<Topic> getAllTopics() {
+    return inMemoryTopics;
+  }
 
   @Nullable
   public Topic getTopicBySlug(String slug) {
