@@ -2,6 +2,7 @@ package com.apijava.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.services.TopicService;
 
@@ -33,12 +34,12 @@ public final class TopicsController {
 
   @GetMapping(path = "/{id}", produces = "application/json")
   public Topic getTopicById(@PathVariable UUID id) {
-    return new Topic("Mocha", "The best sausage");
+    return topicService.getTopicById(id);
   }
 
   @PostMapping(produces = "application/json")
   public Topic postTopic(@RequestBody Topic topic) {
-    return topic;
+    return topicService.createTopic(topic);
   }
 
 }
