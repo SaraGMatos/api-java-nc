@@ -2,7 +2,6 @@ package com.apijava.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.services.TopicService;
 
