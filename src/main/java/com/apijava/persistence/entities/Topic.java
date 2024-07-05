@@ -17,10 +17,8 @@ public class Topic {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @Column(length = 50, nullable = false, unique = true)
   private String slug;
 
-  @Column(length = 200, nullable = false, unique = true)
   private String description;
 
   public Topic(String newSlug, String newDescription) {
