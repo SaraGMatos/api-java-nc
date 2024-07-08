@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("topics")
-public final class TopicsController {
+public class TopicsController {
 
   private final TopicService topicService;
 
@@ -40,5 +40,4 @@ public final class TopicsController {
   public Topic postTopic(@RequestBody Topic topic) {
     return topicService.createTopic(topic);
   }
-
 }
