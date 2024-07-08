@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.apijava.persistence.entities.Topic;
 
 @Repository
-public final class TopicRepository {
+public class TopicRepository {
 
   private final ArrayList<Topic> inMemoryTopics = new ArrayList<Topic>(List.of());
 
