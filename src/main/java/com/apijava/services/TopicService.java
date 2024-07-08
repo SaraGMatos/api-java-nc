@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.apijava.exceptions.NoContentException;
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
@@ -42,5 +43,17 @@ public class TopicService {
     }
 
     return this.topicRepository.save(topic);
+  }
+
+  public void removeTopicById(UUID id) {
+
+    var maybeTopic = this.topicRepository.findById(id);
+
+    if (maybeTopic.isPresent()) {
+      this.topicRepository.deleteById(id);
+    } else {
+      throw new NoContentException();
+    }
+
   }
 }
