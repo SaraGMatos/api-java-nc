@@ -1,31 +1,30 @@
 package com.apijava.services;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
-import com.apijava.persistence.repositories.TopicRepository;
+import com.apijava.persistence.repositories.NewTopicRepository;
 
 @Service
 public class TopicService {
 
-  private final TopicRepository topicRepository;
+  private final NewTopicRepository newTopicRepository;
 
-  public TopicService(TopicRepository topicRepository) {
-    this.topicRepository = topicRepository;
+  public TopicService(NewTopicRepository newTopicRepository) {
+    this.newTopicRepository = newTopicRepository;
   }
 
   public List<Topic> getAllTopics() {
-    return this.topicRepository.getAllTopics();
+    return newTopicRepository.findAll();
   }
 
   public Topic getTopicById(UUID id) throws NotFoundException {
 
-    var maybeTopic = this.topicRepository.getTopicById(id);
+    var maybeTopic = this.newTopicRepository.findById(id);
 
     if (maybeTopic.isPresent()) {
       return maybeTopic.get();
@@ -36,12 +35,12 @@ public class TopicService {
   }
 
   public Topic createTopic(Topic topic) {
-    var maybeTopic = this.topicRepository.getTopicBySlug(topic.getSlug());
+    var maybeTopic = this.newTopicRepository.findBySlug(topic.getSlug());
 
-    if (Objects.isNull(maybeTopic)) {
-      return this.topicRepository.addTopic(topic);
+    if (maybeTopic.isPresent()) {
+      return maybeTopic.get();
     }
 
-    return topic;
+    return this.newTopicRepository.save(topic);
   }
 }
