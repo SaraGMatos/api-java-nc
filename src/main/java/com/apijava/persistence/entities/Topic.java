@@ -10,20 +10,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Topics")
+@Table(name = "topics")
 public class Topic {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column
   private UUID id;
 
+  @Column
   private String slug;
 
+  @Column
   private String description;
 
   public Topic(String newSlug, String newDescription) {
     this.slug = newSlug;
     this.description = newDescription;
+  }
+
+  public Topic() {
+
   }
 
   public UUID getId() {
