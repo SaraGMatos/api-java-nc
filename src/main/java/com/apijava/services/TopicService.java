@@ -7,24 +7,24 @@ import org.springframework.stereotype.Service;
 
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
-import com.apijava.persistence.repositories.NewTopicRepository;
+import com.apijava.persistence.repositories.TopicRepository;
 
 @Service
 public class TopicService {
 
-  private final NewTopicRepository newTopicRepository;
+  private final TopicRepository topicRepository;
 
-  public TopicService(NewTopicRepository newTopicRepository) {
-    this.newTopicRepository = newTopicRepository;
+  public TopicService(TopicRepository topicRepository) {
+    this.topicRepository = topicRepository;
   }
 
   public List<Topic> getAllTopics() {
-    return newTopicRepository.findAll();
+    return topicRepository.findAll();
   }
 
   public Topic getTopicById(UUID id) throws NotFoundException {
 
-    var maybeTopic = this.newTopicRepository.findById(id);
+    var maybeTopic = this.topicRepository.findById(id);
 
     if (maybeTopic.isPresent()) {
       return maybeTopic.get();
@@ -35,12 +35,12 @@ public class TopicService {
   }
 
   public Topic createTopic(Topic topic) {
-    var maybeTopic = this.newTopicRepository.findBySlug(topic.getSlug());
+    var maybeTopic = this.topicRepository.findBySlug(topic.getSlug());
 
     if (maybeTopic.isPresent()) {
       return maybeTopic.get();
     }
 
-    return this.newTopicRepository.save(topic);
+    return this.topicRepository.save(topic);
   }
 }
