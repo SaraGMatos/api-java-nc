@@ -7,9 +7,13 @@ import com.apijava.services.TopicService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.net.URI;
+import java.net.http.HttpHeaders;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,12 +42,18 @@ public class TopicsController {
   }
 
   @PostMapping(produces = "application/json")
-  public Topic postTopic(@RequestBody Topic topic) {
-    return topicService.createTopic(topic);
+  public ResponseEntity<Topic> postTopic(@RequestBody Topic topic) {
+
+    Topic newTopic = topicService.createTopic(topic);
+
+    return ResponseEntity
+        .created(URI.create("/topics/%s".formatted(newTopic.getId())))
+        .body(newTopic);
   }
 
   @DeleteMapping(path = "/{id}", produces = "application/json")
   public void deleteTopicById(@PathVariable UUID id) {
     topicService.removeTopicById(id);
   }
+
 }
