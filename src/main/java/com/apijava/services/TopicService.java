@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.apijava.exceptions.NoContentException;
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
