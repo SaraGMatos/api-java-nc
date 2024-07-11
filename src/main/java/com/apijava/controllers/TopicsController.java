@@ -52,8 +52,9 @@ public class TopicsController {
   }
 
   @DeleteMapping(path = "/{id}", produces = "application/json")
-  public void deleteTopicById(@PathVariable UUID id) {
+  public ResponseEntity<Void> deleteTopicById(@PathVariable UUID id) {
     topicService.removeTopicById(id);
+    return ResponseEntity.noContent().build();
   }
 
 }
