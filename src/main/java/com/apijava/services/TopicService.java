@@ -52,7 +52,7 @@ public class TopicService {
     if (maybeTopic.isPresent()) {
       this.topicRepository.deleteById(id);
     } else {
-      throw new NoContentException();
+      throw new NotFoundException("Topic with id " + id + " not found.");
     }
 
   }
