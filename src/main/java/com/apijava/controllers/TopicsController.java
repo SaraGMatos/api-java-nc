@@ -8,11 +8,9 @@ import com.apijava.services.TopicService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.net.URI;
-import java.net.http.HttpHeaders;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
