@@ -4,6 +4,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apijava.persistence.entities.Topic;
 import com.apijava.services.TopicService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,9 +15,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +59,12 @@ public class TopicsController {
   public ResponseEntity<Void> deleteTopicById(@PathVariable UUID id) {
     topicService.removeTopicById(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @PatchMapping(path = "/{id}")
+  public ResponseEntity<Topic> patchTopicById(@PathVariable UUID id, @RequestBody Topic topic) {
+
+    return ResponseEntity.ok(topicService.updateTopicById(id, topic));
   }
 
 }

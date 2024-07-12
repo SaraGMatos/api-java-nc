@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
+import com.github.fge.jsonpatch.JsonPatch;
 
 @Service
 public class TopicService {
@@ -53,6 +54,18 @@ public class TopicService {
     } else {
       throw new NotFoundException("Topic with id " + id + " not found.");
     }
+
+  }
+
+  public Topic updateTopicById(UUID id, Topic topic) throws NotFoundException {
+    var maybeTopic = this.topicRepository.findById(id);
+
+    if (maybeTopic.isPresent()) {
+      maybeTopic.get().copyFrom(topic);
+      return this.topicRepository.saveAndFlush(maybeTopic.get());
+    }
+
+    throw new NotFoundException("Topic with id " + id + " not found.");
 
   }
 }

@@ -53,4 +53,8 @@ public class Topic {
     this.description = description;
   }
 
+  public void copyFrom(Topic topic) {
+    this.slug = topic.getDescription();
+    this.description = topic.getDescription();
+  }
 }
