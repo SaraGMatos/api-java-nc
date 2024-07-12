@@ -4,10 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apijava.persistence.entities.Topic;
 import com.apijava.services.TopicService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +11,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
