@@ -41,13 +41,11 @@ A Postgres database has been connected through Spring Boot and is being managed 
   - Response example:
 
   ```java
-  [
     {
         "id": "55c68700-9389-4251-be4b-2f5d33124cb1",
         "slug": "Mocha",
         "description": "The best doggo."
     }
-  ]
   ```
 
 ### /topics/{id}
@@ -57,13 +55,23 @@ A Postgres database has been connected through Spring Boot and is being managed 
   - Response example:
 
   ```java
-  [
     {
         "id": "c3ef6093-3a8a-4f05-8604-c17401fa8fbb",
         "slug": "Cooking",
         "description": "A good dish soothes the soul."
     }
-  ]
   ```
 
 - **DELETE 402**: Deletes the matched topic. Does not return anything.
+
+- **PATCH 200**: Updates the matched topic and returns it.
+
+  - Response example:
+
+  ```java
+  {
+    "id": "c3ef6093-3a8a-4f05-8604-c17401fa8fbb",
+    "slug": "Cooking",
+    "description": "A nice plate of food goes a long way!"
+  }
+  ```
