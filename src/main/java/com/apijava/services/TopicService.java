@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.apijava.exceptions.NotFoundException;
 import com.apijava.persistence.entities.Topic;
 import com.apijava.persistence.repositories.TopicRepository;
-import com.github.fge.jsonpatch.JsonPatch;
 
 @Service
 public class TopicService {
