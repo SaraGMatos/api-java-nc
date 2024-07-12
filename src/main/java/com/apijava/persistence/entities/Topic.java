@@ -54,7 +54,7 @@ public class Topic {
   }
 
   public void copyFrom(Topic topic) {
-    this.slug = topic.getDescription();
+    this.slug = topic.getSlug();
     this.description = topic.getDescription();
   }
 }
